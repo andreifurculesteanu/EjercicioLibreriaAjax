@@ -11,7 +11,9 @@
 	function buscarLibro(){
 		var opcion = document.getElementById("opcion").value;
 		
-		if (opcion == 2){
+		if (opcion == 1){
+			
+		} else if (opcion == 2){
 			//opcion 2 --  Recuperar todos los libros
 			var datos ='opcion=' + document.getElementById("opcion").value;
 			var xmlhttp = new XMLHttpRequest();  // objeto XMLHttpRequest
@@ -22,10 +24,8 @@
 		    	   document.getElementById("inputTexto").innerHTML = respuesta;
 		       }
 		    }
- 		} else {
- 			//opcion 1 -- recuperar libro por isbn 
- 			//opcion 3 -- borrar libro por isbn
-			
+ 		} else if (opcion == 3){
+ 			
  			//var datos ='opcion=' + document.getElementById("opcion").value +  + '&isbn=' + document.getElementById("isbnABuscar").value;
  			
  		}
