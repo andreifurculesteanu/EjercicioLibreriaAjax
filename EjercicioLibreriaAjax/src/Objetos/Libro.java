@@ -53,7 +53,7 @@ public class Libro {
 	
 	
 	//Método para añadir un libro
-		public String addBook(ArrayList<Libro> lista, Libro milibro) {
+		public static String addBook(ArrayList<Libro> lista, Libro milibro) {
 			String resultado = " ";
 			if(!lista.contains(milibro.getISBN())) {
 				lista.add(milibro);
@@ -66,34 +66,29 @@ public class Libro {
 	
 	
 		//Metodo de ver todos los libros
-		public String showAllBooks(ArrayList<Libro> lista) {
+		public static String showAllBooks(ArrayList<Libro> lista) {
 			String resultado = "";
 			for(Libro lib: lista) {
-				if (resultado == "") {
-					resultado = "ISBN: " + lib.getISBN() + " -- TITULO: " + lib.getTitulo() + " -- AUTOR: " 
-							+ lib.getAutor() + " -- Año: " + lib.getAno() + "\n";  
-				} else {
-					resultado += "ISBN: " + lib.getISBN() + " -- TITULO: " + lib.getTitulo() + " -- AUTOR: " 
-							+ lib.getAutor() + " -- Año: " + lib.getAno() + "\n";  
-				}
+				resultado += "ISBN: " + lib.getISBN() + " -- TITULO: " + lib.getTitulo() + " -- AUTOR: " 
+						+ lib.getAutor() + " -- Año: " + lib.getAno() + "<br/>";  
 			}
 			return resultado;
 		}
 		
 		//Metodo que busca libro por ISBN
-		public String showBookByISBN(ArrayList<Libro> lista, String isbn) {
+		public static String showBookByISBN(ArrayList<Libro> lista, String isbn) {
 			String resultado = " ";
 			for (Libro lib: lista) {
 				if(lib.getISBN().equals(isbn)) {
 					resultado = "ISBN: " + lib.getISBN() + " -- TITULO: " + lib.getTitulo() + " -- AUTOR: " 
-							+ lib.getAutor() + " -- Año: " + lib.getAno() + "\n"; 
+							+ lib.getAutor() + " -- Año: " + lib.getAno(); 
 				}
 			}
 			return resultado;
 		}
 		
 		//Metodo para eliminar libros por ISBN
-		public String deleteBookByISBN(ArrayList<Libro> lista, String isbn) {
+		public static String deleteBookByISBN(ArrayList<Libro> lista, String isbn) {
 			String resultado = "El libro no existe";
 			for (Libro lib: lista) {
 				if(lib.getISBN().equals(isbn)) {

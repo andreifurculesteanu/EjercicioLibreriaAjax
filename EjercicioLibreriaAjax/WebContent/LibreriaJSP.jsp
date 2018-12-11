@@ -9,13 +9,29 @@
 <script  type="text/javascript">
 
 	function buscarLibro(){
-		if (document.getElementById("isbnABuscar").value == null){
-			//opcion 2
+		var opcion = document.getElementById("opcion").value;
+		
+		if (opcion == 2){
+			//opcion 2 --  Recuperar todos los libros
+			var datos ='opcion=' + document.getElementById("opcion").value;
+			var xmlhttp = new XMLHttpRequest();  // objeto XMLHttpRequest
+		    xmlhttp.onreadystatechange = function() {
+		    	//si el resultado está listo (readyState==4) y la respuesta es correcta (status==200)
+		       if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+		    	   var respuesta = xmlhttp.responseText;
+		    	   document.getElementById("inputTexto").innerHTML = respuesta;
+		       }
+		    }
+ 		} else {
+ 			//opcion 1 -- recuperar libro por isbn 
+ 			//opcion 3 -- borrar libro por isbn
 			
-		} else {
-			//opcion 1 y 3
-			
-		}
+ 			//var datos ='opcion=' + document.getElementById("opcion").value +  + '&isbn=' + document.getElementById("isbnABuscar").value;
+ 			
+ 		}
+		xmlhttp.open("GET","LibreriaServlet?" + datos ,true);  // crea la conexión con parámetros: método, url, asíncrono?
+	    xmlhttp.setRequestHeader("X-Requested-With", "xmlhttprequest");  // establece la cabecera HTTP necesaria
+	    xmlhttp.send();  // lanza la solicitud
 	}
 	
 	
@@ -47,10 +63,8 @@
 		
 		} else if (opcion == 2) {
 			//Al entrar lo primero limpiamos le div de cosas que pueda haber anteriormente
-			document.getElementById("inputTexto").innerHTML = "";
-			
-			buscarLibros();
-			
+			//document.getElementById("inputTexto").innerHTML = "";
+			buscarLibro();
 		} else if (opcion == 3) {
 			//Al entrar lo primero limpiamos le div de cosas que pueda haber anteriormente
 			document.getElementById("inputTexto").innerHTML = "";
