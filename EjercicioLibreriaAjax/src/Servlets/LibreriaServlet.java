@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Objetos.Libro;
+import Utilidades.Metodos;
 
 /**
  * Servlet implementation class LibreriaServlet
@@ -54,15 +55,16 @@ public class LibreriaServlet extends HttpServlet {
         	int opcion = Integer.parseInt(request.getParameter("opcion"));
         	
         	if (opcion == 1) {
-        		//String isbn = request.getParameter("isbnABuscar");
-        		
-        		
-        		
+        		String isbn = request.getParameter("isbn");
+        		String respuesta = Metodos.showBookByISBN(biblioteca, isbn);
+        		out.println(respuesta);
         	} else if (opcion == 2) {
-        		String respuesta = Libro.showAllBooks(biblioteca);
+        		String respuesta = Metodos.showAllBooks(biblioteca);
         		out.println(respuesta);
         	} else if (opcion == 3) {
-        		
+        		String isbn = request.getParameter("isbn");
+        		String respuesta = Metodos.deleteBookByISBN(biblioteca, isbn);
+        		out.println(respuesta);
         	}
         	
         	
