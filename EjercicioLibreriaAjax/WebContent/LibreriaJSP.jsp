@@ -42,6 +42,20 @@
 		    	   document.getElementById("inputTexto").innerHTML = respuesta;
 		       }
 		    } 			
+ 		} else if (opcion == 4){
+ 			var datos ='opcion=' + document.getElementById("opcion").value + 
+ 						'&isbn=' + document.getElementById("isbn").value + 
+ 						'&titulo=' + document.getElementById("titulo").value + 
+ 						'&autor=' + document.getElementById("autor").value + 
+ 						'&ano=' + document.getElementById("ano").value;
+ 			var xmlhttp = new XMLHttpRequest();  // objeto XMLHttpRequest
+		    xmlhttp.onreadystatechange = function() {
+		    	//si el resultado está listo (readyState==4) y la respuesta es correcta (status==200)
+		       if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+		    	   var respuesta = xmlhttp.responseText;
+		    	   document.getElementById("inputTexto").innerHTML = respuesta;
+		       }
+		    }
  		}
 		xmlhttp.open("GET","LibreriaServlet?" + datos ,true);  // crea la conexión con parámetros: método, url, asíncrono?
 	    xmlhttp.setRequestHeader("X-Requested-With", "xmlhttprequest");  // establece la cabecera HTTP necesaria
@@ -60,6 +74,7 @@
 			var x = document.createElement("input");
 			x.setAttribute("type", "text");
 			x.setAttribute("id", "isbnABuscar");
+			x.setAttribute("placeholder", "Introduzca ISBN");
 			inputTexto.appendChild(x);
 			
 			//salto entre input y botton
@@ -84,6 +99,7 @@
 			var x = document.createElement("input");
 			x.setAttribute("type", "text");
 			x.setAttribute("id", "isbnABuscar");
+			x.setAttribute("placeholder", "Introduzca ISBN");
 			inputTexto.appendChild(x);
 			
 			//salto entre input y botton
@@ -104,25 +120,45 @@
 			var x = document.createElement("input");
 			x.setAttribute("type", "text");
 			x.setAttribute("id", "isbn");
+			x.setAttribute("placeholder", "Introduzca ISBN");
 			inputTexto.appendChild(x);
-		
+			
+			//salto entre input y botton
+			inputTexto.appendChild(document.createElement("br"));
+			inputTexto.appendChild(document.createElement("br"));
+			
 			//creamos el input type text para recoger el titulo
 			var y = document.createElement("input");
 			y.setAttribute("type", "text");
 			y.setAttribute("id", "titulo");
+			y.setAttribute("placeholder", "Introduzca titulo");
 			inputTexto.appendChild(y);
+			
+			//salto entre input y botton
+			inputTexto.appendChild(document.createElement("br"));
+			inputTexto.appendChild(document.createElement("br"));
 			
 			//creamos el input type text para recoger el autor
 			var z = document.createElement("input");
 			z.setAttribute("type", "text");
 			z.setAttribute("id", "autor");
+			z.setAttribute("placeholder", "Introduzca autor");
 			inputTexto.appendChild(z);
+			
+			//salto entre input y botton
+			inputTexto.appendChild(document.createElement("br"));
+			inputTexto.appendChild(document.createElement("br"));
 			
 			//creamos el input type text para recoger el autor
 			var w = document.createElement("input");
 			w.setAttribute("type", "text");
 			w.setAttribute("id", "ano");
+			w.setAttribute("placeholder", "Introduzca año");
 			inputTexto.appendChild(w);
+			
+			//salto entre input y botton
+			inputTexto.appendChild(document.createElement("br"));
+			inputTexto.appendChild(document.createElement("br"));
 			
 			//creamos el botón "Añadir libro" para enviar los datos por buscarLibro()
 			var q = document.createElement("input");
@@ -130,7 +166,6 @@
 			q.setAttribute("value", "Añadir libro");
 			q.setAttribute("onClick", "buscarLibro();");
 			inputTexto.appendChild(q);
-			
 		}
 	}
 

@@ -14,12 +14,27 @@ public class Metodos {
 			 */
 			public static String addBook(ArrayList<Libro> lista, Libro milibro) {
 				String resultado = " ";
-				if(!lista.contains(milibro.getISBN())) {
-					lista.add(milibro);
-					resultado = "Libro añadido correctamente";
-				} else {
-					resultado = "Ya existe un libro con ese ISBN";
-				}
+				boolean var = false;
+        		for (Libro lib: lista) {
+        			if (lib.getISBN().equals(milibro.getISBN())) {
+        				var = true;
+        				resultado = "El ISBN introducido está asociado a otro libro o el libro que introduces ya existe";
+        			}
+        		}
+        		
+        		if (!var) {
+        			if (milibro.getAutor().length() > 0) {
+        				if(milibro.getTitulo().length() > 0) {
+        					lista.add(milibro);
+        					resultado = "El libro se ha añadido correctamente";
+        				} else {
+        					resultado = "Introduzca el título del libro";
+        				}
+        			} else {
+        				resultado = "Debe introducir un autor";
+        			}
+        		}
+        		
 				return resultado;
 			}
 				

@@ -68,7 +68,17 @@ public class LibreriaServlet extends HttpServlet {
         		String isbn = request.getParameter("isbn");
         		String respuesta = Metodos.deleteBookByISBN(biblioteca, isbn);
         		out.println(respuesta);
-        	} 	
+        	} else if (opcion == 4) {
+        		String isbn = request.getParameter("isbn");
+        		String autor = request.getParameter("autor");
+        		String titulo = request.getParameter("titulo");
+        		int ano = Integer.parseInt(request.getParameter("ano"));
+        		
+        		Libro milibro = new Libro(isbn, autor, titulo, ano);
+        		
+        		String respuesta = Metodos.addBook(biblioteca, milibro);
+        		out.println(respuesta);
+        	}
         } else {
         	out.println("Este servlet solo se puede invocar por Ajax");
         }
