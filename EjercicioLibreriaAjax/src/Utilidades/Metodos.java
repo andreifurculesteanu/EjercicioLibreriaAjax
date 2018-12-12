@@ -5,7 +5,13 @@ import java.util.ArrayList;
 import Objetos.Libro;
 
 public class Metodos {
-			//Método para añadir un libro
+	
+			/**
+			 * Método que añade libros
+			 * @param lista
+			 * @param milibro
+			 * @return
+			 */
 			public static String addBook(ArrayList<Libro> lista, Libro milibro) {
 				String resultado = " ";
 				if(!lista.contains(milibro.getISBN())) {
@@ -16,9 +22,12 @@ public class Metodos {
 				}
 				return resultado;
 			}
-		
-		
-			//Metodo de ver todos los libros
+				
+			/**
+			 * Metodo de ver todos los libros
+			 * @param lista
+			 * @return
+			 */
 			public static String showAllBooks(ArrayList<Libro> lista) {
 				String resultado = "";
 				for(Libro lib: lista) {
@@ -28,7 +37,13 @@ public class Metodos {
 				return resultado;
 			}
 			
-			//Metodo que busca libro por ISBN
+			
+			/**
+			 * Metodo que busca libro por ISBN
+			 * @param lista
+			 * @param isbn
+			 * @return
+			 */
 			public static String showBookByISBN(ArrayList<Libro> lista, String isbn) {
 				String resultado = "El libro con ISBN: " + isbn + " no existe";
 				for (Libro lib: lista) {
@@ -40,7 +55,13 @@ public class Metodos {
 				return resultado;
 			}
 			
-			//Metodo para eliminar libros por ISBN
+		
+			/**
+			 * Metodo para eliminar libros por ISBN
+			 * @param lista
+			 * @param isbn
+			 * @return
+			 */
 			public static String deleteBookByISBN(ArrayList<Libro> lista, String isbn) {
 				String resultado = "El libro con ISBN: " + isbn + " no existe";
 				for (int i = 0; i < lista.size(); i++) {

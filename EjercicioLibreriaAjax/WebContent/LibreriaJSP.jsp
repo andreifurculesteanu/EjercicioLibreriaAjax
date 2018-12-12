@@ -50,9 +50,7 @@
 	
 	
 	function funcionOpciones(){
-		
 		var opcion = document.getElementById("opcion").value;
-		
 		//opcion 1 = "Recuperar el libro a partir de ISBN"
 		if (opcion == 1){
 			//Al entrar lo primero limpiamos le div de cosas que pueda haber anteriormente
@@ -74,7 +72,6 @@
 			y.setAttribute("value", "Buscar libro");
 			y.setAttribute("onClick", "buscarLibro();");
 			inputTexto.appendChild(y);	
-		
 		} else if (opcion == 2) {
 			//Al entrar lo primero limpiamos le div de cosas que pueda haber anteriormente
 			//document.getElementById("inputTexto").innerHTML = "";
@@ -99,11 +96,42 @@
 			y.setAttribute("value", "Borrar libro");
 			y.setAttribute("onClick", "buscarLibro();");
 			inputTexto.appendChild(y);	
-
+		} else if (opcion == 4){
+			//Al entrar lo primero limpiamos le div de cosas que pueda haber anteriormente
+			document.getElementById("inputTexto").innerHTML = "";
+			
+			//creamos un input type text para recoger el ISBN del libro
+			var x = document.createElement("input");
+			x.setAttribute("type", "text");
+			x.setAttribute("id", "isbn");
+			inputTexto.appendChild(x);
+		
+			//creamos el input type text para recoger el titulo
+			var y = document.createElement("input");
+			y.setAttribute("type", "text");
+			y.setAttribute("id", "titulo");
+			inputTexto.appendChild(y);
+			
+			//creamos el input type text para recoger el autor
+			var z = document.createElement("input");
+			z.setAttribute("type", "text");
+			z.setAttribute("id", "autor");
+			inputTexto.appendChild(z);
+			
+			//creamos el input type text para recoger el autor
+			var w = document.createElement("input");
+			w.setAttribute("type", "text");
+			w.setAttribute("id", "ano");
+			inputTexto.appendChild(w);
+			
+			//creamos el botón "Añadir libro" para enviar los datos por buscarLibro()
+			var q = document.createElement("input");
+			q.setAttribute("type", "button");
+			q.setAttribute("value", "Añadir libro");
+			q.setAttribute("onClick", "buscarLibro();");
+			inputTexto.appendChild(q);
+			
 		}
-		
-		
-		
 	}
 
 
@@ -118,6 +146,7 @@
 			  <option value="1">Recuperar el libro a partir de ISBN</option>
 			  <option value="2">Recuperar todos los libros de la biblioteca</option>
 			  <option value="3">Borrar libro por ISBN</option>
+			  <option value="4">Añadir libro</option>
 			</select>
 			
 			</br></br>

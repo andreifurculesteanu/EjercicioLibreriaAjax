@@ -4,12 +4,22 @@ import java.util.ArrayList;
 
 public class Libro {
 	
-	//Propiedades
+	/**
+	 * Propiedades
+	 * String: ISBN, titulo, autor
+	 * int: ano
+	 */
 	String ISBN, titulo, autor;
 	int ano;
 	
 	
-	//Constructor
+	/**
+	 * Constructor Libro
+	 * @param ISBN
+	 * @param titulo
+	 * @param autor
+	 * @param ano
+	 */
 	public Libro(String ISBN, String titulo, String autor, int ano) {
 		this.ISBN = ISBN;
 		this.titulo = titulo;

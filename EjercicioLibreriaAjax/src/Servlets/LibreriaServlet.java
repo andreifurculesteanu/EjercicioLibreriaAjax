@@ -39,21 +39,24 @@ public class LibreriaServlet extends HttpServlet {
     ArrayList<Libro> biblioteca = new ArrayList<Libro>(Arrays.asList(libro1, libro2, libro3, libro4, libro5));
     
 
-    
+    /**
+     * Método que procesa la solicitud por Ajax
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     private void procesaSolicitud(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
     	response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-
     	// Comprobar si la petición es mediante Ajax
     	Boolean esAjax;
         esAjax="XMLHttpRequest".equalsIgnoreCase(request.getHeader("X-Requested-With")); // Cabecera X-Requested-With
         
         if (esAjax) {
-        	
         	int opcion = Integer.parseInt(request.getParameter("opcion"));
-        	
         	if (opcion == 1) {
         		String isbn = request.getParameter("isbn");
         		String respuesta = Metodos.showBookByISBN(biblioteca, isbn);
@@ -65,19 +68,13 @@ public class LibreriaServlet extends HttpServlet {
         		String isbn = request.getParameter("isbn");
         		String respuesta = Metodos.deleteBookByISBN(biblioteca, isbn);
         		out.println(respuesta);
-        	}
-        	
-        	
-        	
-        	
+        	} 	
         } else {
         	out.println("Este servlet solo se puede invocar por Ajax");
         }
     	
     	
 	}
-    
-    
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
