@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import Objetos.Libro;
 
-public class Metodos {
+	public class Metodos {
 	
 			/**
 			 * Método que añade libros
@@ -21,7 +21,6 @@ public class Metodos {
         				resultado = "El ISBN introducido está asociado a otro libro o el libro que introduces ya existe";
         			}
         		}
-        		
         		if (!var) {
         			if (milibro.getAutor().length() > 0) {
         				if(milibro.getTitulo().length() > 0) {
@@ -89,4 +88,33 @@ public class Metodos {
 				return resultado;
 			}
 			
-}
+			
+			/**
+			 * Método que modifica un libro
+			 * @param lista
+			 * @param milibro
+			 * @return
+			 */
+			public static String modifyBook(ArrayList<Libro> lista, Libro milibro) {
+				String resultado = "El libro que quiere modificar no existe";
+				
+				for(Libro lib: lista) {
+					if(lib.getISBN().equals(milibro.getISBN())) {
+						if(!milibro.getAutor().equals(lib.getAutor()) && !milibro.getAutor().equals("")) {
+							lib.setAutor(milibro.getAutor());
+						} 
+						if (!milibro.getTitulo().equals(lib.getTitulo()) && !milibro.getTitulo().equals("")) {
+							lib.setTitulo(milibro.getTitulo());
+						} 
+						if (milibro.getAno() != 0 ) {
+							lib.setAno(milibro.getAno());
+						}
+						resultado = "El libro se ha modificado correctamente";
+					}
+				}
+				return resultado;
+			}
+			
+			
+			
+	}

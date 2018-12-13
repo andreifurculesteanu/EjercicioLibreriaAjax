@@ -74,9 +74,22 @@ public class LibreriaServlet extends HttpServlet {
         		String titulo = request.getParameter("titulo");
         		int ano = Integer.parseInt(request.getParameter("ano"));
         		
-        		Libro milibro = new Libro(isbn, autor, titulo, ano);
+        		Libro milibro = new Libro(isbn, titulo, autor, ano);
         		
         		String respuesta = Metodos.addBook(biblioteca, milibro);
+        		out.println(respuesta);
+        	} else if (opcion == 5) {
+        		String isbn = request.getParameter("isbn");
+        		String autor = request.getParameter("autor");
+        		String titulo = request.getParameter("titulo");
+        		int ano = 0;
+        		if (!request.getParameter("ano").equals("")) {
+        			ano = Integer.parseInt(request.getParameter("ano"));
+        		}
+        		
+        		Libro milibro = new Libro(isbn, titulo, autor, ano);
+        		
+        		String respuesta = Metodos.modifyBook(biblioteca, milibro);
         		out.println(respuesta);
         	}
         } else {
