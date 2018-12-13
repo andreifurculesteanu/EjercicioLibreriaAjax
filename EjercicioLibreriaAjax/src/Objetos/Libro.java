@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Libro {
 	
+
 	/**
 	 * Propiedades
 	 * String: ISBN, titulo, autor
@@ -61,7 +62,11 @@ public class Libro {
 		this.ano = ano;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return  "<strong>ISBN: </strong>" + ISBN + " -**-<strong> TITULO: </strong>" + titulo + "<strong> -**- AUTOR: </strong>" 
+				+ autor + "<strong> -**- Año: </strong>" + ano;
+	}
 	
 		
 }

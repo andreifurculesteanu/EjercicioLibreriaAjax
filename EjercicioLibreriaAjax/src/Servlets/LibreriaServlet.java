@@ -30,13 +30,12 @@ public class LibreriaServlet extends HttpServlet {
     }
     
  
-    Libro libro1 = new Libro("1", "Hola mundo", "Pepe Rodriguez", 2001);
-    Libro libro2 = new Libro("2", "Hola mundo", "Pepe Rodriguez", 2001);
-    Libro libro3 = new Libro("3", "Hola mundo", "Pepe Rodriguez", 2001);
-    Libro libro4 = new Libro("4", "Hola mundo", "Pepe Rodriguez", 2001);
-    Libro libro5 = new Libro("5", "Hola mundo", "Pepe Rodriguez", 2001);
+    Libro libro1 = new Libro("9788497594196", "Diario de Ana Frank", "Ana Frank", 1947);
+    Libro libro2 = new Libro("9780552172127", "Inferno", "Dan Brown", 2013);
+    Libro libro3 = new Libro("9788499890944", "1984", "George Orwell", 1948);
+    Libro libro4 = new Libro("9788499890951", "Rebelión en la granja", "George Orwell", 1945);
     
-    ArrayList<Libro> biblioteca = new ArrayList<Libro>(Arrays.asList(libro1, libro2, libro3, libro4, libro5));
+    ArrayList<Libro> biblioteca = new ArrayList<Libro>(Arrays.asList(libro1, libro2, libro3, libro4));
     
 
     /**
@@ -72,7 +71,10 @@ public class LibreriaServlet extends HttpServlet {
         		String isbn = request.getParameter("isbn");
         		String autor = request.getParameter("autor");
         		String titulo = request.getParameter("titulo");
-        		int ano = Integer.parseInt(request.getParameter("ano"));
+        		int ano = 0;
+        		if (!request.getParameter("ano").equals("")) {
+        			ano = Integer.parseInt(request.getParameter("ano"));
+        		}
         		
         		Libro milibro = new Libro(isbn, titulo, autor, ano);
         		
@@ -95,8 +97,6 @@ public class LibreriaServlet extends HttpServlet {
         } else {
         	out.println("Este servlet solo se puede invocar por Ajax");
         }
-    	
-    	
 	}
     
 	/**
