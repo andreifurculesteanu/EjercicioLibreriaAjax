@@ -1,6 +1,7 @@
 package Utilidades;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import Objetos.Libro;
 
@@ -15,6 +16,10 @@ public class Metodos {
 	public static String addBook(ArrayList<Libro> lista, Libro milibro) {
 		String resultado = " ";
 		boolean var = false;
+		String reg10 = "^[0-9]{10}$";
+		String reg13 = "^[0-9]{13}$";
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		
 		for (Libro lib : lista) {
 			if (lib.getISBN().equals(milibro.getISBN())) {
 				var = true;
@@ -22,20 +27,29 @@ public class Metodos {
 			}
 		}
 		if (!var) {
-			if (milibro.getAutor().length() > 0) {
-				if (milibro.getTitulo().length() > 0) {
-					if (milibro.getAno() != 0) {
-						lista.add(milibro);
-						resultado = "El libro se ha añadido correctamente";
-					}else {
-						resultado = "Debe introducir el año de publicación";
-					}	
+			if (milibro.getISBN().matches(reg10) || milibro.getISBN().matches(reg13)) {
+				if (milibro.getAutor().length() > 0) {
+					if (milibro.getTitulo().length() > 0) {
+						if (milibro.getAno() != 0) {
+							if(milibro.getAno() <= year + 2) {
+								lista.add(milibro);
+								resultado = "El libro se ha añadido correctamente";
+							} else {
+								resultado = "Año máximo: " + year + " + 2";
+							}
+						}else {
+							resultado = "Debe introducir el año de publicación";
+						}	
+					} else {
+						resultado = "Debe introducir el título del libro";
+					}
 				} else {
-					resultado = "Debe introducir el título del libro";
+					resultado = "Debe introducir un autor";
 				}
 			} else {
-				resultado = "Debe introducir un autor";
+				resultado = "Debe introducir correctamente el ISBN. 10 o 13 carácteres";
 			}
+			
 		}
 		return resultado;
 	}
@@ -96,6 +110,7 @@ public class Metodos {
 	 */
 	public static String modifyBook(ArrayList<Libro> lista, Libro milibro) {
 		String resultado = "El libro que quiere modificar no existe";
+		int year = Calendar.getInstance().get(Calendar.YEAR);
 		for (Libro lib : lista) {
 			if (lib.getISBN().equals(milibro.getISBN())) {
 				if (!milibro.getAutor().equals(lib.getAutor()) && !milibro.getAutor().equals("")) {
@@ -105,7 +120,9 @@ public class Metodos {
 					lib.setTitulo(milibro.getTitulo());
 				}
 				if (milibro.getAno() != 0) {
-					lib.setAno(milibro.getAno());
+					if(milibro.getAno() <= year + 2) {
+						lib.setAno(milibro.getAno());
+					} 
 				}
 				resultado = "El libro se ha modificado correctamente";
 			}
